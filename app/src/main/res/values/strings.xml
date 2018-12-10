@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">T16094</string>
+    <string name="select_device">デバイスを選択</string>
+    <string name="wait_till_bt_on">Bluetoothを有効にします</string>
+    <string name="title_paired_device">接続履歴のあるNXT</string>
+    <string name="paired_devices">その他のデバイス</string>
+    <string name="button_scan">デバイスをスキャン</string>
+</resources>
