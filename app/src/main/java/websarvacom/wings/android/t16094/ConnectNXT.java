@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 import android.widget.Toast;
 
 public class ConnectNXT extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 2000;
+    private static final int REQUEST_CONNECT_DEVICEE = 1000;
     private Toast mLongToast;
     private Toast mShortToast;
 
@@ -49,8 +51,17 @@ public class ConnectNXT extends AppCompatActivity {
             mShortToast.setText("BluetoothはONです。");
             mShortToast.show();
             Log.v("Bluetooth","Bluetooth is On");
+            selectNXT();
         }
     }
+    public void selectNXT(){
+        //明示的インテントでConnectNXTからDeviceListActivityクラスを呼び出す。次にDeviceListActivityクラスを追加作成する。
+        Intent serverIntent = new Intent(this,DeviceListActivity.class);
+        //DeviceListActivityが実行後に呼び出されるようにForResult指定でDeviceListActivityを実行
+        startActivityForResult(serverIntent,REQUEST_CONNECT_DEVICEE);
+
+    }
+
 
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent data){
@@ -72,6 +83,11 @@ public class ConnectNXT extends AppCompatActivity {
                         finish();
                         break;
                 }
+                break;
+            case REQUEST_CONNECT_DEVICEE:
+                //DeviceListActivity終了後の処理
+                mShortToast.setText("DeviceListActivity終了しました。");
+                mShortToast.show();
                 break;
             default:
                 Log.v("Bluetooth",Integer.toString(requestCode));
